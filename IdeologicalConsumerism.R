@@ -137,14 +137,9 @@ validsample <- list(C1, C2, C3, C4, C5, C6, C7, C8,
                     C44, C45, C46)
 validsample <- do.call(rbind.data.frame, validsample)
 variable.names(validsample)
-validsample[c(1,3:4,6:15,17:21)] <- NULL
+validsample[c(1,3:4,6:15,17:20)] <- NULL
 
 library(ggplot2)
 ggplot(validsample, aes(x=validsample$`Received votes`, fill=validsample$ideology)) + geom_density(alpha=0.3) + xlab("Received votes") + labs(fill="Ideology")
 
 
-LinguisticSimilarity <- validsample %>% distinct(Candidate, LinguisticSimilarity, .keep_all = TRUE)
-library(psych)
-linguisticsimilarity <- describe.by(LinguisticSimilarity$LinguisticSimilarity, group = LinguisticSimilarity$ideology, mat = TRUE)
-
-boxplot(LinguisticSimilarity$LinguisticSimilarity ~ LinguisticSimilarity$Comparison, xlab="Pairwise comparison of political ideologies")
