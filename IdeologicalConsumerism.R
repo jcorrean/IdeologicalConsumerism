@@ -142,4 +142,15 @@ validsample[c(1,3:4,6:15,17:20)] <- NULL
 library(ggplot2)
 ggplot(validsample, aes(x=validsample$`Received votes`, fill=validsample$ideology)) + geom_density(alpha=0.3) + xlab("Received votes") + labs(fill="Ideology")
 
+IdeologiesComparison <- list(SC1, SC2, SC3, SC4, SC5, SC6,
+                             SC7, SC8, SC9, SC10, SC11, SC12,
+                             SC13, SC14, SC15, SC16, SC17, SC18,
+                             SC19, SC20, SC21, SC22, SC23, SC24,
+                             SC25, SC26, SC27, SC28, SC29, SC30,
+                             SC31, SC32, SC33, SC34, SC35, SC36,
+                             SC37, SC38, SC39, SC40, SC41, SC42,
+                             SC43, SC44, SC45, SC46)
 
+IdeologiesComparison <- do.call(rbind.data.frame, IdeologiesComparison)
+library(psych)
+IdeologyComparison <- describeBy(IdeologiesComparison$jaccard, group = IdeologiesComparison$Candidate, mat = TRUE)
